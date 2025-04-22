@@ -37,7 +37,7 @@ const perishableProduct1 = new PerishableProductProperties("Orange", 3, 20, "202
 const perishableProduct2 = new PerishableProductProperties("Milk", 1.5, 10, "2025-05-01");    
 
 
-const products = [sampleProduct1, perishableProduct1, perishableProduct1];
+const products = [sampleProduct1, perishableProduct1, perishableProduct2];
 
 products.forEach(p => console.log(p.toString()));
 ProductProperties.applyDiscount(products, 0.10);
@@ -77,10 +77,8 @@ let productList = [
     product5
 ];
 
-productList.forEach(product => store.addProduct(product));
-console.log("Total inventory value: $" + store.getInventoryValue());
-let searchName = "Pasta";
-let foundProduct = store.findProductByName(searchName);
-if (foundProduct) {
-    console.log(`Found product: ${foundProduct.toString()}`);
-}
+console.log(`Total inventory value before discount: $ ${productList}`);
+
+ProductProperties.applyDiscount(productList, 0.15);
+
+console.log(`Total inventory value after 15% discount: $ ${productList}`);
