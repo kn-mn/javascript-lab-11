@@ -26,7 +26,6 @@ class ProductProperties {
             super(name, price, quantity);
             this.expirationDate = expirationDate;
         }
-    
         toString() {
             return `${super.toString()} Expiration Date: ${this.expirationDate}`;
         }
@@ -42,4 +41,19 @@ const products = [product1, product2, product3];
 
 products.forEach(p => console.log(p.toString()));
 ProductProperties.applyDiscount(products, 0.10);
+console.log("After applying discount:");
 products.forEach(p => console.log(p.toString()));
+
+class StoreProperties{
+    constuctor(){
+        this.inventory = [];
+    }
+}
+
+addProduct(product) {
+    this.inventory.push(product);
+}
+
+getInventoryValue(){
+    return this.inventory.reduce((total, product) => total + product.getTotalValue(), 0);
+}
