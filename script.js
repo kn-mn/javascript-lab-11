@@ -51,12 +51,10 @@ class StoreProperties {
     addProduct(product) {
         this.inventory.push(product);
     }
-
     getInventoryValue() {
         return this.inventory
             .reduce((total, product) => total + product.getTotalValue(), 0).toFixed(2);
     }
-
     findProductByName(name) {
         const product = this.inventory.find(p => p.name === name);
         return product || null;
@@ -78,3 +76,11 @@ let productList = [
     product4,
     product5
 ];
+
+productList.forEach(product => store.addProduct(product));
+console.log("Total inventory value: $" + store.getInventoryValue());
+let searchName = "Pasta";
+let foundProduct = store.findProductByName(searchName);
+if (foundProduct) {
+    console.log(`Found product: ${foundProduct.toString()}`);
+}
