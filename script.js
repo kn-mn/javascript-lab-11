@@ -24,4 +24,9 @@ class ProductProperties {
         }
     }
 
-console.log("getTotalValue()");
+const product1 = new PerishableProductProperties("Apple", 1, 5, "2025-04-29");
+const product2 = new PerishableProductProperties("Milk", 2, 10, "2025-05-01");    
+
+
+console.log("toString()");
+product1.toString();
