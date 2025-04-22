@@ -39,10 +39,11 @@ const perishableProduct2 = new PerishableProductProperties("Milk", 1.5, 10, "202
 
 const products = [sampleProduct1, perishableProduct1, perishableProduct2];
 
-products.forEach(p => console.log(p.toString()));
+console.log("Products:");
+products.forEach(product => console.log(product.toString()));
 ProductProperties.applyDiscount(products, 0.10);
-console.log("After applying discount:");
-products.forEach(p => console.log(p.toString()));
+console.log("\nProducts after applying discount:");
+products.forEach(product => console.log(product.toString()));
 
 class StoreProperties {
     constructor() {
@@ -77,8 +78,18 @@ let productList = [
     product5
 ];
 
-console.log(`Total inventory value before discount: $ ${productList}`);
+for (const product of productList) {
+    store.addProduct(product);
+}
 
-ProductProperties.applyDiscount(productList, 0.15);
+console.log("\nTotal before discount: $", store.getInventoryValue());
+ProductProperties.applyDiscount(store.inventory, 0.15);
+console.log("Total after 15% discount: $", store.getInventoryValue());
 
-console.log(`Total inventory value after 15% discount: $ ${productList}`);
+const lookup = "Cheese";
+const found = store.findProductByName(lookup);
+if (found) {
+    console.log(`\n Found ${lookup}: ${found.toString()}`);
+} else {
+    console.log(`${lookup} not found.`);
+}
