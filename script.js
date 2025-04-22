@@ -9,7 +9,15 @@ class ProductProperties {
     }
 
     toString() {
-        return `Product: ${this.name} Price: ${this.price} Quantity: ${this.quantity}`;
+        return `Product: ${this.name} Price: ${this.price.toFixed(2)} Quantity: ${this.quantity}`;
+    }
+
+    static applyDiscount(products, discount) {
+        for(let product of products){
+        let discountedPrice = (product.price - (product.price * discount))
+        discountedPrice = (discountedPrice*100)/100
+        product.price = discountedPrice;    
+        }
     }
 }
 
@@ -22,11 +30,16 @@ class ProductProperties {
         toString() {
             return `${super.toString()} Expiration Date: ${this.expirationDate}`;
         }
-    }
+}
 
-const product1 = new PerishableProductProperties("Apple", 1, 5, "2025-04-29");
-const product2 = new PerishableProductProperties("Milk", 2, 10, "2025-05-01");    
+const product1 = new ProductProperties("Apple", 2.5, 50);
+
+const product2 = new PerishableProductProperties("Orange", 3, 20, "2025-05-01");
+const product3 = new PerishableProductProperties("Milk", 1.5, 10, "2025-05-01");    
 
 
-console.log("toString()");
-product1.toString();
+const products = [product1, product2, product3];
+
+products.forEach(p => console.log(p.toString()));
+ProductProperties.applyDiscount(products, 0.10);
+products.forEach(p => console.log(p.toString()));
