@@ -37,7 +37,7 @@ const perishableProduct1 = new PerishableProductProperties("Orange", 3, 20, "202
 const perishableProduct2 = new PerishableProductProperties("Milk", 1.5, 10, "2025-05-01");    
 
 
-const products = [sampleProduct1, perishableProduct, perishableProduct1];
+const products = [sampleProduct1, perishableProduct1, perishableProduct1];
 
 products.forEach(p => console.log(p.toString()));
 ProductProperties.applyDiscount(products, 0.10);
@@ -63,9 +63,9 @@ class StoreProperties {
 
 let product1 = new ProductProperties("Pasta", 1.2, 30);
 let product2 = new ProductProperties("Canned Tomatoes", 2.0, 15);
-let product3 = new perishableProduct("Cheese", 4.5, 5, "2025-05-01");
-let product4 = new perishableProduct("Yogurt", 1.8, 10, "2025-05-01");
-let product5 = new perishableProduct("Eggs", 2.5, 12, "2025-05-01");
+let product3 = new PerishableProductProperties("Cheese", 4.5, 5, "2025-05-01");
+let product4 = new PerishableProductProperties("Yogurt", 1.8, 10, "2025-05-01");
+let product5 = new PerishableProductProperties("Eggs", 2.5, 12, "2025-05-01");
 
 let store = new StoreProperties();
 
