@@ -3,40 +3,41 @@ class ProductProperties {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
-    }
-
-    getTotalValue() {
+        }
+    getTotalValue(){
         return this.price * this.quantity;
     }
 
-    toString() {
+    toString(){
         return `Product: ${this.name} Price: ${this.price.toFixed(2)} Quantity: ${this.quantity}`;
     }
 
     static applyDiscount(products, discount) {
-        for (let product of products) {
-            let discountedPrice = product.price * (1 - discount);
-            product.price = Math.round(discountedPrice * 100) / 100;
+        for(let product of products){
+        let discountedPrice = (product.price - (product.price * discount))
+        discountedPrice = (discountedPrice*100)/100
+        product.price = discountedPrice;    
         }
     }
 }
 
-class PerishableProductProperties extends ProductProperties {
-    constructor(name, price, quantity, expirationDate) {
-        super(name, price, quantity);
-        this.expirationDate = expirationDate;
-    }
-
-    toString() {
-        return `${super.toString()} Expiration Date: ${this.expirationDate}`;
-    }
+    class PerishableProductProperties extends ProductProperties {
+        constructor(name, price, quantity, expirationDate) {
+            super(name, price, quantity);
+            this.expirationDate = expirationDate;
+        }
+        toString() {
+            return `${super.toString()} Expiration Date: ${this.expirationDate}`;
+        }
 }
 
-const product1 = new ProductProperties("Apple", 2.5, 50);
-const product2 = new PerishableProductProperties("Orange", 3, 20, "2025-05-01");
-const product3 = new PerishableProductProperties("Milk", 1.5, 10, "2025-05-01");
+const sampleProduct1 = new ProductProperties("Apple", 2.5, 50);
 
-const products = [product1, product2, product3];
+const perishableProduct1 = new PerishableProductProperties("Orange", 3, 20, "2025-05-01");
+const perishableProduct2 = new PerishableProductProperties("Milk", 1.5, 10, "2025-05-01");    
+
+
+const products = [sampleProduct1, perishableProduct, perishableProduct1];
 
 products.forEach(p => console.log(p.toString()));
 ProductProperties.applyDiscount(products, 0.10);
@@ -47,7 +48,6 @@ class StoreProperties {
     constructor() {
         this.inventory = [];
     }
-
     addProduct(product) {
         this.inventory.push(product);
     }
@@ -56,8 +56,25 @@ class StoreProperties {
         return this.inventory
             .reduce((total, product) => total + product.getTotalValue(), 0).toFixed(2);
     }
+
+    findProductByName(name) {
+        const product = this.inventory.find(p => p.name === name);
+        return product || null;
+    }
 }
 
-const store = new StoreProperties();
-products.forEach(p => store.addProduct(p));
-console.log(`Total inventory value: $${store.getInventoryValue()}`);
+let product1 = new ProductProperties("Pasta", 1.2, 30);
+let product2 = new ProductProperties("Canned Tomatoes", 2.0, 15);
+let product3 = new perishableProduct("Cheese", 4.5, 5, "2025-05-01");
+let product4 = new perishableProduct("Yogurt", 1.8, 10, "2025-05-01");
+let product5 = new perishableProduct("Eggs", 2.5, 12, "2025-05-01");
+
+let store = new StoreProperties();
+
+let productList = [
+    product1,
+    product2,
+    product3,
+    product4,
+    product5
+];
