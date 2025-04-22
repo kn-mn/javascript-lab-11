@@ -1,3 +1,4 @@
+// Part 1: Setting Up Classes
 class ProductProperties {
     constructor(name, price, quantity) {
         this.name = name;
@@ -11,6 +12,9 @@ class ProductProperties {
     toString(){
         return `Product: ${this.name} Price: ${this.price.toFixed(2)} Quantity: ${this.quantity}`;
     }
+
+// Part 2: Adding Inheritance
+// Part 3: Static Methods and Properties
 
     static applyDiscount(products, discount) {
         for(let product of products){
